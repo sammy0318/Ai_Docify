@@ -13,7 +13,7 @@ import {
   useMediaQuery
 } from '@mui/material';
 import {
-  KeyboardArrowDown as ArrowDownIcon,
+  KeyboardArrowDown  as ArrowDownIcon,
   Menu as MenuIcon,
   LightMode as LightModeIcon,
   DarkMode as DarkModeIcon
