@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import LogoV1 from '../../assets/Logov1.svg'; // Adjust the path as necessary
+import LogoV2 from '../../assets/Logov2.svg'; // Adjust the path as necessary
 import {
   Box,
   Button,
@@ -107,13 +109,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ darkMode, toggleDarkMode }) =
                 padding: 0
               }}
             >
-              {/* Logo */}
-              <Box className={styles.logoContainer}>
+             
+                <Box className={styles.logoContainer}>
                 <Box
                   component="img"
-                  src={darkMode ? "/logo-dark.svg" : "/logo-light.svg"}
+                  src={darkMode ? LogoV2 : LogoV1}
                   alt="AI Docify Logo"
                   className={styles.logo}
+                  sx={{ width: '50px', height: '60px' }} // Adjust the size as needed
                 />
                 <Typography
                   variant="h5"
