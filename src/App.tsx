@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
-import LandingPage from './components/LandingPage'; // Adjust if necessary
+import LandingPage from './components/LandingPage';
 import './App.css';
 
 function App() {

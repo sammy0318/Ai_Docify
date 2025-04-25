@@ -15,14 +15,13 @@ import {
   useMediaQuery
 } from '@mui/material';
 import {
-  KeyboardArrowDown  as ArrowDownIcon,
+  KeyboardArrowDown as ArrowDownIcon,
   Menu as MenuIcon,
   LightMode as LightModeIcon,
   DarkMode as DarkModeIcon
 } from '@mui/icons-material';
 import styles from './index.module.css';
 import BlurText from './BlurText'; // Ensure this points to your BlurText component location
-import HyperspeedBackground from './HyperspeedBackground'; // Import your HyperspeedBackground component
 
 interface NavItem {
   label: string;
@@ -84,9 +83,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ darkMode, toggleDarkMode }) =
 
   return (
     <div className={styles.Wrapper}>
-      {/* Background Animation */}
-      <HyperspeedBackground />
-
       <Box className={styles.pageContainer}>
         {/* Navigation */}
         <AppBar
