@@ -3,7 +3,6 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
-import VideoPage from './components/VideoPage/VideoPage';
 import './App.css';
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
   const savedTheme = localStorage.getItem('theme');
   const initialDarkMode = savedTheme === 'light' ? false : true;
 
-  const [darkMode, setDarkMode] = useState<boolean>(initialDarkMode);
+  const [darkMode, setDarkMode] = useState(initialDarkMode);
 
   const theme = createTheme({
     palette: {
@@ -60,7 +59,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
-          <Route path="/video" element={<VideoPage darkMode={darkMode} />} />
+          {/* Add other routes here if needed */}
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

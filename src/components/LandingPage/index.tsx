@@ -2,7 +2,6 @@ import { Container, Typography, Button, Box } from '@mui/material';
 import { useEffect, useState, useRef } from 'react';
 import HyperspeedBackground from '../LandingPage/HyperspeedBackground';
 import Navbar from '../Navbar/Navbar';
-import VideoPage from '../VideoPage/VideoPage';
 import styles from './index.module.css';
 
 interface LandingPageProps {
@@ -73,10 +72,7 @@ const LandingPage = ({ darkMode, toggleDarkMode }: LandingPageProps) => {
       {/* Spacer to create scroll distance */}
       <div className={styles.spacer}></div>
 
-      {/* Video Section */}
-      <div ref={videoSectionRef} className={`${styles.videoSectionWrapper} ${showVideo ? styles.visible : ''}`}>
-        <VideoPage darkMode={darkMode} />
-      </div>
+      
     </div>
   );
 };
