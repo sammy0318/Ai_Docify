@@ -1,5 +1,4 @@
 import { Container, Typography, Button, Box } from '@mui/material';
-import { useEffect, useState, useRef } from 'react';
 import HyperspeedBackground from '../LandingPage/HyperspeedBackground';
 import Navbar from '../Navbar/Navbar';
 import styles from './index.module.css';
@@ -10,33 +9,6 @@ interface LandingPageProps {
 }
 
 const LandingPage = ({ darkMode, toggleDarkMode }: LandingPageProps) => {
-  const [showVideo, setShowVideo] = useState(false);
-  const videoSectionRef = useRef<HTMLDivElement>(null);
-
-  // Handle scroll to show video section
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      // Show video after scrolling down 300px (adjust this value as needed)
-      if (scrollPosition > 300) {
-        setShowVideo(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  // Scroll to video section
-  const scrollToVideo = () => {
-    if (videoSectionRef.current) {
-      videoSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-      setShowVideo(true);
-    }
-  };
-
   return (
     <div className={darkMode ? styles.darkMode : styles.lightMode}>
       <HyperspeedBackground darkMode={darkMode} />
@@ -47,7 +19,8 @@ const LandingPage = ({ darkMode, toggleDarkMode }: LandingPageProps) => {
           <Typography variant="h3" className={styles.heroTitle}>
             <span className={styles.highlight}>
               <span className={styles.mainheadline}>AiDocify<br /> </span>
-            </span> Upload PDFs to instantly AI-Powered Summaries, Notes, and Assignments
+            </span>
+            Upload PDFs to instantly get AI-Powered Summaries, Notes, and Assignments
           </Typography>
           
           <Typography variant="h6" className={styles.heroSubtitle}>
@@ -58,7 +31,6 @@ const LandingPage = ({ darkMode, toggleDarkMode }: LandingPageProps) => {
             variant="contained" 
             size="large" 
             className={styles.ctaButton}
-            onClick={scrollToVideo}
           >
             GET STARTED <span className={styles.arrowIcon}>→</span>
           </Button>
@@ -71,8 +43,6 @@ const LandingPage = ({ darkMode, toggleDarkMode }: LandingPageProps) => {
 
       {/* Spacer to create scroll distance */}
       <div className={styles.spacer}></div>
-
-      
     </div>
   );
 };
