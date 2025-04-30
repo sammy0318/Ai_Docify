@@ -241,3 +241,245 @@
     display: block;
   }
 }
+/* Add these styles to your existing Navbar.module.css file */
+
+/* Existing styles - keep them */
+.appBar {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoText {
+  font-weight: 700;
+}
+
+.logoIcon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sunLogo {
+  width: 24px;
+  height: 24px;
+  background-color: #f9d71c;
+  border-radius: 50%;
+  position: relative;
+}
+
+.sunRays {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.sunRays:before,
+.sunRays:after {
+  content: "";
+  position: absolute;
+  background-color: #f9d71c;
+}
+
+.sunRays:before {
+  width: 100%;
+  height: 4px;
+  top: 10px;
+  left: -8px;
+  box-shadow: 0 16px 0 #f9d71c;
+}
+
+.sunRays:after {
+  width: 4px;
+  height: 100%;
+  top: -8px;
+  left: 10px;
+  box-shadow: 16px 0 0 #f9d71c;
+}
+
+.moonLogo {
+  width: 24px;
+  height: 24px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(-30deg);
+}
+
+.moonCrater1,
+.moonCrater2,
+.moonCrater3 {
+  position: absolute;
+  background-color: #bbbbbb;
+  border-radius: 50%;
+}
+
+.moonCrater1 {
+  width: 6px;
+  height: 6px;
+  top: 6px;
+  left: 8px;
+}
+
+.moonCrater2 {
+  width: 4px;
+  height: 4px;
+  top: 14px;
+  left: 14px;
+}
+
+.moonCrater3 {
+  width: 5px;
+  height: 5px;
+  top: 6px;
+  left: 16px;
+}
+
+.menuItems {
+  display: flex;
+  gap: 20px;
+}
+
+.menuItem {
+  cursor: pointer;
+  padding: 8px 0;
+  position: relative;
+  font-weight: 500;
+}
+
+.menuItemWithDropdown {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 100;
+  padding: 8px 0;
+}
+
+.dropdownDark {
+  background-color: #2d2d2d;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dropdownItem {
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdownItem:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdownDark .dropdownItem:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.themeToggle {
+  padding: 8px;
+}
+
+.menuButton {
+  padding: 8px;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+}
+
+.lightDivider {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.darkDivider {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* New Mobile Menu Styles */
+.mobileDrawer {
+  width: 85%;
+  max-width: 300px;
+}
+
+.mobileMenuContainer {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+.darkMobileMenu {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.mobileMenuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.darkMobileMenu .mobileMenuHeader {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobileMenuList {
+  padding: 0;
+}
+
+.mobileMenuSection {
+  margin-bottom: 8px;
+}
+
+.mobileMenuTitle {
+  font-weight: 600;
+  padding: 16px 16px 8px 16px;
+}
+
+.mobileSubmenuList {
+  padding: 0;
+}
+
+.mobileMenuItem {
+  padding: 8px 16px 8px 32px;
+  cursor: pointer;
+}
+
+.mobileMenuItem:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.darkMobileMenu .mobileMenuItem:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
