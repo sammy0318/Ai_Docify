@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import VideoPage from './components/VideoPage';
-import PdfUpload from './components/PdfUpload'; // Importing the actual PdfUpload component
+import PdfUpload from './components/PdfUpload';
 import './App.css';
 
 // You could add these new components
@@ -25,9 +25,10 @@ function App() {
         main: '#7c4dff',
       },
       background: {
-        default: darkMode ? '#121212' : '#ffffff',
+        default: 'transparent', // Use transparent to let the background show through
         paper: darkMode ? '#1e1e1e' : '#ffffff',
       },
+      divider: darkMode ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.08)', // Divider color based on theme
     },
     typography: {
       fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
@@ -45,6 +46,22 @@ function App() {
         styleOverrides: {
           root: {
             boxShadow: 'none',
+            background: 'transparent', // Make app bar transparent to show the background
+          },
+        },
+      },
+      MuiContainer: {
+        styleOverrides: {
+          root: {
+            position: 'relative', // For proper z-index stacking
+            zIndex: 1, // Above the background
+          },
+        },
+      },
+      MuiDivider: {
+        styleOverrides: {
+          root: {
+            margin: '0', // No margin for dividers
           },
         },
       },
@@ -62,18 +79,20 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<LandingPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />}
-          />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/video" element={<VideoPage />} />
-          <Route path="/upload" element={<PdfUpload />} /> {/* Using the actual PdfUpload component */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <div className={darkMode ? 'app-container dark-mode' : 'app-container light-mode'}>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={<LandingPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />}
+            />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/video" element={<VideoPage />} />
+            <Route path="/upload" element={<PdfUpload />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </ThemeProvider>
   );
 }

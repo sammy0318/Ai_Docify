@@ -4,13 +4,12 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
-
-// Removed unused Background component
+import { useTheme } from '@mui/material/styles';
 
 const VideoPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const videoId = 'YOUR_VIDEO_ID'; // Replace with your YouTube video ID
+  const theme = useTheme();
 
   const features = [
     {
@@ -31,22 +30,26 @@ const VideoPage = () => {
     }
   ];
 
+  // Apply theme-based class names instead of inline styles
+  const themeMode = theme.palette.mode === 'dark' ? styles.darkMode : styles.lightMode;
+
   return (
-    <section className={styles.videoSection}>
+    <section className={`${styles.videoSection} ${themeMode}`}>
       <div className={styles.container}>
         <div className={styles.flexContainer}>
           {/* Left side: Video */}
           <div className={styles.videoWrapper}>
             <div className={styles.videoContainer}>
               <div className={styles.videoPaper}>
-                <iframe
-                  className={styles.video}
-                  src={`https://www.youtube.com/embed/${videoId}?autoplay=${isPlaying ? 1 : 0}&mute=${isMuted ? 1 : 0}&controls=0`}
-                  title="AiDocify Demo"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+              <iframe
+                className={styles.video}
+                src={`https://www.youtube.com/embed/ou-litQ9hWQ?autoplay=${isPlaying ? 1 : 0}&mute=${isMuted ? 1 : 0}&controls=0`}
+                title="AiDocify Demo"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+
 
                 {/* Custom video controls */}
                 <div className={styles.videoControls}>
@@ -90,7 +93,9 @@ const VideoPage = () => {
                     <h3 className={styles.featureTitle}>
                       {feature.title}
                     </h3>
-                    <p className={styles.featureDescription}>{feature.description}</p>
+                    <p className={styles.featureDescription}>
+                      {feature.description}
+                    </p>
                   </div>
                 </div>
               ))}

@@ -1,5 +1,4 @@
 import { Container, Typography, Button, Box } from '@mui/material';
-import HyperspeedBackground from '../Background/HyperspeedBackground';
 import Navbar from '../Navbar/Navbar';
 import VideoPage from '../VideoPage';
 import UploadPage from '../PdfUpload/index';
@@ -24,7 +23,6 @@ const LandingPage = ({ darkMode, toggleDarkMode }: LandingPageProps) => {
 
         {/* Section 1: Hero */}
         <div className={styles.snapSection}>
-          <HyperspeedBackground darkMode={darkMode} />
           <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <Container className={styles.heroContainer}>
             <Box className={styles.heroContent}>
@@ -61,7 +59,7 @@ const LandingPage = ({ darkMode, toggleDarkMode }: LandingPageProps) => {
         </div>
 
         {/* Section 3: Upload Page */}
-        <div className={styles.snapSection} ref={uploadSectionRef}>
+        <div className={styles.snapSection} ref={uploadSectionRef} id="uploadSection">
           <UploadPage />
         </div>
 

@@ -3,6 +3,12 @@
   padding: 0.5rem 0;
   background-color: transparent !important;
   box-shadow: none !important;
+  z-index: 1500 !important;
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
 }
 
 .toolbar {
@@ -482,4 +488,90 @@
 
 .darkMobileMenu .mobileMenuItem:hover {
   background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Fix for dropdown disappearing too early */
+.menuItemWithDropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Add invisible gap between menu item and dropdown to maintain hover */
+.menuItemWithDropdown::before {
+  content: "";
+  position: absolute;
+  height: 20px; /* Adjust height of the gap/buffer zone */
+  width: 100%;
+  bottom: -20px; /* Position the gap below the menu item */
+  left: 0;
+  z-index: 99; /* Keep this below the dropdown z-index */
+}
+
+/* Fix for dropdown item colors in dark mode */
+.dropdown {
+  position: absolute;
+  z-index: 1000; /* Higher z-index to ensure it's above all content */
+  min-width: 200px;
+  top: 100%; /* Position directly below the menu item */
+  left: 0;
+}
+
+/* Ensure text colors are properly set for dark/light mode */
+.lightMode .dropdown {
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.darkMode .dropdown {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover effects for dropdown items */
+.dropdownItem {
+  display: block;
+  padding: 10px 16px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.lightMode .dropdownItem {
+  color: #000000;
+}
+
+.darkMode .dropdownItem {
+  color: #ffffff;
+}
+
+.lightMode .dropdownItem:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #7c4dff;
+}
+
+.darkMode .dropdownItem:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #7c4dff;
+}
+
+/* Animation for dropdown appearance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown {
+  animation: fadeIn 0.2s ease-in-out;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 12px 0;
+  margin-top: 0; /* Reset margin */
+  top: calc(100% + 16px); /* Position below the buffer area */
 }

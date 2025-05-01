@@ -37,3 +37,10 @@ body.light-mode {
   color: #000000;
   transition: background-color 0.3s, color 0.3s;
 }
+/* Section divider styles */
+.section-divider {
+  height: 1px;
+  width: 100%;
+  margin: 0;
+  border: none;
+}

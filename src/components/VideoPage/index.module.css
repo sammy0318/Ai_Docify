@@ -1,6 +1,33 @@
 .videoSection {
   padding: 60px 0;
+  /* Background color is now applied dynamically in the component */
+}
+
+/* Theme-based styles */
+.darkMode.videoSection {
+  background-color: #121212;
+}
+
+.lightMode.videoSection {
   background-color: #f9f9f9;
+}
+
+.darkMode .title {
+  color: #6a3dd2; /* Dark mode primary color */
+}
+
+.lightMode .title {
+  color: #6a3dd2; /* Light mode primary color */
+}
+
+.darkMode .description,
+.darkMode .featureDescription {
+  color: #e0e0e0;
+}
+
+.lightMode .description,
+.lightMode .featureDescription {
+  color: #333;
 }
 
 .container {
@@ -76,14 +103,14 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #7c4dff;
+  /* Color is now applied through theme classes */
 }
 
 .description {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
-  color: #333;
+  /* Color is now applied through theme classes */
 }
 
 .featuresList {
@@ -100,7 +127,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: #7c4dff;
+  background-color: #7c4dff; /* This could also be dynamically applied */
   color: white;
   display: flex;
   align-items: center;
@@ -124,7 +151,7 @@
 .featureDescription {
   font-size: 0.9rem;
   margin: 0;
-  color: #555;
+  /* Color is now applied through theme classes */
 }
 
 .ctaButton {

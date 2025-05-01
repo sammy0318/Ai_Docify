@@ -4,8 +4,8 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 
 interface NavbarProps {
@@ -15,29 +15,80 @@ interface NavbarProps {
 
 const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
   const theme = useTheme();
-  const navigate = useNavigate();
+  const location = useLocation();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // Add hover delay state
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   const handleMouseEnter = (dropdown: string) => {
+    // Clear any existing timeout
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
     setActiveDropdown(dropdown);
   };
 
   const handleMouseLeave = () => {
-    setActiveDropdown(null);
+    // Add a delay before closing the dropdown
+    const timeout = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 300); // 300ms delay
+    setHoverTimeout(timeout);
+  };
+
+  // Handle dropdown hover for nested elements
+  const handleDropdownMouseEnter = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
   };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const goToUpload = () => {
-    navigate('/upload');
+  const scrollToUploadSection = () => {
+    // If on the home page, scroll to upload section
+    if (location.pathname === '/') {
+      const uploadSection = document.getElementById('uploadSection');
+      if (uploadSection) {
+        uploadSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If not on home page, navigate to home page with a query parameter
+      window.location.href = '/?scrollToUpload=true';
+    }
+    
     if (mobileMenuOpen) {
       setMobileMenuOpen(false);
     }
   };
+
+  // Check for scrollToUpload parameter on page load
+  useEffect(() => {
+    if (location.pathname === '/' && location.search.includes('scrollToUpload=true')) {
+      // Small delay to ensure component is fully loaded
+      setTimeout(() => {
+        const uploadSection = document.getElementById('uploadSection');
+        if (uploadSection) {
+          uploadSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
+
+  // Clean up timeout when component unmounts
+  useEffect(() => {
+    return () => {
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+      }
+    };
+  }, [hoverTimeout]);
 
   const menuItems = [
     {
@@ -110,86 +161,57 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
               </Box>
             </Link>
             
-            {/* Desktop Menu */}
-            {!isMobile && (
-              <Box className={styles.menuItems}>
-                {menuItems.map((menu) => (
-                  <Box 
-                    key={menu.id}
-                    component="div" 
-                    className={`${styles.menuItem} ${styles.menuItemWithDropdown}`}
-                    onMouseEnter={() => handleMouseEnter(menu.id)}
-                    onMouseLeave={handleMouseLeave}
-                    sx={{ 
-                      position: 'relative',
-                      '&::after': {
-                        content: '""',
-                        position: 'absolute',
-                        width: activeDropdown === menu.id ? '100%' : '0%',
-                        height: '2px',
-                        bottom: '-3px',
-                        left: '0',
-                        backgroundColor: '#7c4dff',
-                        transition: 'width 0.3s ease-in-out'
-                      }
-                    }}
-                  >
-                    {menu.title}
-                    {activeDropdown === menu.id && (
-                      <Box 
-                        className={`${styles.dropdown} ${darkMode ? styles.dropdownDark : ''}`}
-                        sx={{
-                          position: 'absolute',
-                          top: '100%',
-                          left: '0',
-                          minWidth: '200px',
-                          backgroundColor: darkMode ? '#1e1e1e' : '#ffffff',
-                          boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-                          borderRadius: '8px',
-                          padding: '12px 0',
-                          zIndex: 100,
-                          mt: 1,
-                          overflow: 'hidden',
-                          animation: 'fadeIn 0.2s ease-in-out',
-                          '@keyframes fadeIn': {
-                            '0%': {
-                              opacity: 0,
-                              transform: 'translateY(-10px)'
-                            },
-                            '100%': {
-                              opacity: 1,
-                              transform: 'translateY(0)'
-                            }
-                          }
-                        }}
-                      >
-                        {menu.items.map((item, index) => (
-                          <Box 
-                            key={index} 
-                            component={Link} 
-                            to={item.path}
-                            className={styles.dropdownItem}
-                            sx={{
-                              display: 'block',
-                              padding: '10px 16px',
-                              color: 'inherit',
-                              textDecoration: 'none',
-                              transition: 'all 0.2s',
-                              '&:hover': {
-                                backgroundColor: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
-                                color: '#7c4dff'
-                              }
-                            }}
-                          >
-                            {item.label}
-                          </Box>
-                        ))}
-                      </Box>
-                    )}
-                  </Box>
-                ))}
+          
+
+{/* Desktop Menu */}
+{!isMobile && (
+  <Box className={styles.menuItems}>
+    {menuItems.map((menu) => (
+      <Box 
+        key={menu.id}
+        component="div" 
+        className={`${styles.menuItem} ${styles.menuItemWithDropdown}`}
+        onMouseEnter={() => handleMouseEnter(menu.id)}
+        onMouseLeave={handleMouseLeave}
+        sx={{ 
+          position: 'relative',
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            width: activeDropdown === menu.id ? '100%' : '0%',
+            height: '2px',
+            bottom: '-3px',
+            left: '0',
+            backgroundColor: '#7c4dff',
+            transition: 'width 0.3s ease-in-out'
+          }
+        }}
+      >
+        {menu.title}
+        {activeDropdown === menu.id && (
+          <Box 
+            className={`${styles.dropdown}`}
+            onMouseEnter={handleDropdownMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            // Remove inline styles for position, colors, and animation - use CSS classes instead
+          >
+            {menu.items.map((item, index) => (
+              <Box 
+                key={index} 
+                component={Link} 
+                to={item.path}
+                className={styles.dropdownItem}
+                // Remove inline styles for hover effects - use CSS classes instead
+              >
+                {item.label}
               </Box>
-            )}
+            ))}
+          </Box>
+        )}
+      </Box>
+    ))}
+  </Box>
+)}
             
             <Box className={styles.actions}>
               <IconButton 
@@ -203,7 +225,7 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
 
               <Button 
                 variant="contained" 
-                onClick={goToUpload}
+                onClick={scrollToUploadSection}
                 size="small"
                 endIcon={<ArrowForwardIcon />}
                 sx={{ 
@@ -316,7 +338,7 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
               <Button 
                 variant="contained" 
                 fullWidth
-                onClick={goToUpload}
+                onClick={scrollToUploadSection}
                 endIcon={<ArrowForwardIcon />}
                 sx={{ 
                   bgcolor: '#7c4dff',
