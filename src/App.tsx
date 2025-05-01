@@ -3,7 +3,13 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
+import VideoPage from './components/VideoPage';
+import PdfUpload from './components/PdfUpload'; // Importing the actual PdfUpload component
 import './App.css';
+
+// You could add these new components
+const Dashboard = () => <div>Dashboard Coming Soon</div>;
+const NotFound = () => <div>Page Not Found</div>;
 
 function App() {
   // Check for the saved theme preference from localStorage
@@ -58,8 +64,14 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
-          {/* Add other routes here if needed */}
+          <Route
+            path="/"
+            element={<LandingPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />}
+          />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/video" element={<VideoPage />} />
+          <Route path="/upload" element={<PdfUpload />} /> {/* Using the actual PdfUpload component */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

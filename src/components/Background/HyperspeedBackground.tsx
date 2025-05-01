@@ -1,7 +1,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
-import styles from "./index.module.css";
+import styles from "./HyperspeedBackground.module.css";
 
 interface HyperspeedBackgroundProps {
   darkMode: boolean;
