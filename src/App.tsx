@@ -28,7 +28,6 @@ function App() {
         default: 'transparent', // Use transparent to let the background show through
         paper: darkMode ? '#1e1e1e' : '#ffffff',
       },
-      divider: darkMode ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.08)', // Divider color based on theme
     },
     typography: {
       fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
@@ -55,13 +54,6 @@ function App() {
           root: {
             position: 'relative', // For proper z-index stacking
             zIndex: 1, // Above the background
-          },
-        },
-      },
-      MuiDivider: {
-        styleOverrides: {
-          root: {
-            margin: '0', // No margin for dividers
           },
         },
       },

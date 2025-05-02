@@ -164,7 +164,7 @@ const PdfUpload = () => {
             }
           }}
         >
-          <label htmlFor="file-upload" className="hidden-label">Upload PDF</label>
+          <label htmlFor="file-upload" className="hidden-label"></label>
           <input
             id="file-upload"
             type="file"

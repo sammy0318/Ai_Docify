@@ -3,6 +3,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+.canvas-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
 
 html,
 body,
@@ -12,35 +21,78 @@ body,
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
+
 body {
   overflow-y: auto;
 }
-.app {
+
+.app-container {
   min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Snap Scrolling Container */
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Each section will snap when scrolled */
+.snap-section {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
 }
 
-.light-mode .divider {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.dark-mode .divider {
-  background-color: rgba(255, 255, 255, 0.1);
+/* Section divider */
+.section-divider {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px !important;
+  background-color: rgba(127, 127, 127, 0.3) !important;
 }
 
 /* Light Mode */
-body.light-mode {
+.light-mode {
   background-color: #ffffff;
-  color: #000000;
+  color: #121212;
   transition: background-color 0.3s, color 0.3s;
 }
-/* Section divider styles */
-.section-divider {
-  height: 1px;
-  width: 100%;
-  margin: 0;
-  border: none;
+
+.light-mode .section-divider {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Dark Mode */
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode .section-divider {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Add navigation link styling */
+.nav-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
 }
