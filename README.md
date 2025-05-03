@@ -1,54 +1,34 @@
-# React + TypeScript + Vite
+# 🧠 Ai_Docify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Ai_Docify** is an AI-powered document assistant that enables users to upload documents and interact with them through natural language queries. Built with **React**, **TypeScript**, and **Vite**, and powered by Vercel's **AI SDK**, this application offers a seamless experience for document analysis and information retrieval.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Demo
 
-## Expanding the ESLint configuration
+👉 [ai-docify.vercel.app](https://ai-docify.vercel.app/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🚀 Features
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- 📄 **Document Upload**: Easily upload documents for analysis.
+- 💬 **AI-Powered Q&A**: Ask questions related to the uploaded document and receive intelligent responses.
+- ⚡ **Real-Time Interaction**: Experience swift and responsive interactions with the AI.
+- 🔒 **Secure Processing**: Your documents are processed securely, ensuring privacy and confidentiality.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🛠️ Tech Stack
+
+- **Frontend**: React, TypeScript, Vite
+- **AI Integration**: Vercel AI SDK
+- **Deployment**: Vercel
+
+---
+
+## 📬 Contact
+
+Built with ❤️ by sammy0318 and alvindevil
+
+Feel free to reach out for collaborations or inquiries!
